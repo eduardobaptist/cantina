@@ -33,7 +33,7 @@ CREATE TABLE `estoques` (
   `updated_at` datetime DEFAULT NULL,
   `tipo` varchar(7) DEFAULT NULL COMMENT 'entrada/saida',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,14 +44,11 @@ SET @OLD_AUTOCOMMIT=@@AUTOCOMMIT, @@AUTOCOMMIT=0;
 LOCK TABLES `estoques` WRITE;
 /*!40000 ALTER TABLE `estoques` DISABLE KEYS */;
 INSERT INTO `estoques` VALUES
-(1,1,5,'eduardo','pra mim sim','2026-05-20 01:00:41','2026-05-20 01:00:41','adicion'),
-(2,1,5,'eduardo','abc','2026-05-20 01:04:17','2026-05-20 01:04:17','entrada'),
-(3,1,5,'','','2026-05-20 01:06:43','2026-05-20 01:06:43','entrada'),
-(4,1,5,'','','2026-05-20 01:07:23','2026-05-20 01:07:23','entrada'),
-(5,1,10,'','','2026-05-20 01:10:55','2026-05-20 01:10:55','saida'),
-(6,1,10,'','','2026-07-01 00:06:30','2026-07-01 00:06:30','entrada'),
-(7,2,10,'','','2026-07-01 00:06:34','2026-07-01 00:06:34','entrada'),
-(8,3,10,'','','2026-07-01 00:06:37','2026-07-01 00:06:37','entrada');
+(9,10,10,'','','2026-07-07 22:32:02','2026-07-07 22:32:02','entrada'),
+(10,11,10,'','','2026-07-07 22:49:08','2026-07-07 22:49:08','entrada'),
+(11,11,5,'','','2026-07-07 22:49:16','2026-07-07 22:49:16','saida'),
+(12,11,20,'','','2026-07-07 22:57:44','2026-07-07 22:57:44','saida'),
+(13,11,16,'','','2026-07-07 22:59:31','2026-07-07 22:59:31','entrada');
 /*!40000 ALTER TABLE `estoques` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
@@ -73,7 +70,7 @@ CREATE TABLE `migrations` (
   `time` int(11) NOT NULL,
   `batch` int(11) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -90,7 +87,8 @@ INSERT INTO `migrations` VALUES
 (4,'2026-06-02-221713','App\\Database\\Migrations\\CreateTablePedidoProdutos','default','App',1780439638,3),
 (5,'2026-06-30-000000','App\\Database\\Migrations\\AlterUsuariosControleAcesso','default','App',1782860863,4),
 (6,'2026-06-30-120000','App\\Database\\Migrations\\AddColumnClientePedidos','default','App',1782865112,5),
-(7,'2026-07-01-000000','App\\Database\\Migrations\\AddColumnTotemPedidos','default','App',1782866817,6);
+(7,'2026-07-01-000000','App\\Database\\Migrations\\AddColumnTotemPedidos','default','App',1782866817,6),
+(8,'2026-07-07-000000','App\\Database\\Migrations\\CreateTableTotens','default','App',1783439973,7);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
@@ -113,7 +111,7 @@ CREATE TABLE `pedido_produtos` (
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -124,30 +122,9 @@ SET @OLD_AUTOCOMMIT=@@AUTOCOMMIT, @@AUTOCOMMIT=0;
 LOCK TABLES `pedido_produtos` WRITE;
 /*!40000 ALTER TABLE `pedido_produtos` DISABLE KEYS */;
 INSERT INTO `pedido_produtos` VALUES
-(1,1,31,2,25.90,'2026-06-03 00:01:51','2026-06-03 00:01:51',NULL),
-(2,1,31,1,18.50,'2026-06-03 00:01:51','2026-06-03 00:01:51',NULL),
-(3,1,31,4,7.00,'2026-06-03 00:01:51','2026-06-03 00:01:51',NULL),
-(4,2,2,1,12.00,'2026-06-30 22:20:59','2026-06-30 22:20:59',NULL),
-(5,3,1,1,10.00,'2026-06-30 22:22:23','2026-06-30 22:22:23',NULL),
-(6,3,2,1,12.00,'2026-06-30 22:22:23','2026-06-30 22:22:23',NULL),
-(7,4,2,1,12.00,'2026-06-30 22:39:39','2026-06-30 22:39:39',NULL),
-(8,4,1,3,10.00,'2026-06-30 22:39:39','2026-06-30 22:39:39',NULL),
-(9,5,2,1,12.00,'2026-06-30 22:40:15','2026-06-30 22:40:15',NULL),
-(10,6,1,1,10.00,'2026-06-30 22:49:03','2026-06-30 22:49:03',NULL),
-(11,7,2,1,12.00,'2026-07-01 00:11:29','2026-07-01 00:11:29',NULL),
-(12,7,1,1,10.00,'2026-07-01 00:11:29','2026-07-01 00:11:29',NULL),
-(13,7,3,1,8.00,'2026-07-01 00:11:29','2026-07-01 00:11:29',NULL),
-(16,10,2,1,12.00,'2026-07-01 00:21:21','2026-07-01 00:21:21',NULL),
-(17,10,1,1,10.00,'2026-07-01 00:21:21','2026-07-01 00:21:21',NULL),
-(18,10,3,1,8.00,'2026-07-01 00:21:21','2026-07-01 00:21:21',NULL),
-(19,11,3,1,8.00,'2026-07-01 00:22:14','2026-07-01 00:22:14',NULL),
-(20,11,2,1,12.00,'2026-07-01 00:22:14','2026-07-01 00:22:14',NULL),
-(23,14,3,1,8.00,'2026-07-01 00:38:31','2026-07-01 00:38:31',NULL),
-(24,14,2,1,12.00,'2026-07-01 00:38:31','2026-07-01 00:38:31',NULL),
-(25,15,3,1,8.00,'2026-07-01 00:38:53','2026-07-01 00:38:53',NULL),
-(26,15,2,1,12.00,'2026-07-01 00:38:53','2026-07-01 00:38:53',NULL),
-(29,18,3,1,8.00,'2026-07-01 00:49:16','2026-07-01 00:49:16',NULL),
-(30,18,2,1,12.00,'2026-07-01 00:49:16','2026-07-01 00:49:16',NULL);
+(43,26,10,1,6.00,'2026-07-07 22:32:26','2026-07-07 22:32:26',NULL),
+(44,27,11,1,6.00,'2026-07-07 22:51:27','2026-07-07 22:51:27',NULL),
+(45,28,11,1,6.00,'2026-07-07 23:17:04','2026-07-07 23:17:04',NULL);
 /*!40000 ALTER TABLE `pedido_produtos` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
@@ -169,7 +146,7 @@ CREATE TABLE `pedidos` (
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -180,18 +157,8 @@ SET @OLD_AUTOCOMMIT=@@AUTOCOMMIT, @@AUTOCOMMIT=0;
 LOCK TABLES `pedidos` WRITE;
 /*!40000 ALTER TABLE `pedidos` DISABLE KEYS */;
 INSERT INTO `pedidos` VALUES
-(1,'novo',NULL,NULL,'2026-06-03 00:01:51','2026-06-03 00:01:51',NULL),
-(2,'pronto',NULL,NULL,'2026-06-30 22:20:59','2026-06-30 22:36:57',NULL),
-(3,'pronto',NULL,NULL,'2026-06-30 22:22:23','2026-06-30 22:36:58',NULL),
-(4,'pronto',NULL,NULL,'2026-06-30 22:39:39','2026-06-30 22:48:46',NULL),
-(5,'pronto',NULL,NULL,'2026-06-30 22:40:15','2026-06-30 22:48:52',NULL),
-(6,'pronto',NULL,NULL,'2026-06-30 22:49:03','2026-06-30 23:13:39',NULL),
-(7,'pronto',NULL,NULL,'2026-07-01 00:11:29','2026-07-01 00:21:08',NULL),
-(10,'pronto',NULL,NULL,'2026-07-01 00:21:21','2026-07-01 00:22:32',NULL),
-(11,'pronto','Eduardo',NULL,'2026-07-01 00:22:14','2026-07-01 00:22:33',NULL),
-(14,'aguardando','Eduardo',NULL,'2026-07-01 00:38:31','2026-07-01 00:38:31',NULL),
-(15,'aguardando','Eduardo',NULL,'2026-07-01 00:38:53','2026-07-01 00:38:53',NULL),
-(18,'aguardando','João','Principal','2026-07-01 00:49:16','2026-07-01 00:49:16',NULL);
+(27,'pronto','Eduardo','3','2026-07-07 22:51:27','2026-07-07 22:52:05',NULL),
+(28,'pronto','Eduardo','3','2026-07-07 23:17:04','2026-07-07 23:17:42',NULL);
 /*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
@@ -217,7 +184,7 @@ CREATE TABLE `produtos` (
   `estoque` int(11) NOT NULL,
   `estoque_limite` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -228,10 +195,41 @@ SET @OLD_AUTOCOMMIT=@@AUTOCOMMIT, @@AUTOCOMMIT=0;
 LOCK TABLES `produtos` WRITE;
 /*!40000 ALTER TABLE `produtos` DISABLE KEYS */;
 INSERT INTO `produtos` VALUES
-(1,'Coxinha',10.00,'2026-05-06 00:20:06','2026-07-01 00:06:30','1778026806_f60ca3357c50c00e3d76.jpg','lanches',1,0.00,5,0),
-(2,'Coca-cola',12.00,'2026-05-06 00:45:34','2026-07-01 00:06:34','1778028334_50bcbe6f335e75893989.png','bebidas',1,0.00,10,0),
-(3,'Pastel',8.00,'2026-07-01 00:05:04','2026-07-01 00:06:37','1782864304_df48671e0ecb3ca22da7.png','lanches',0,0.00,10,0);
+(11,'Café 300ml',6.00,'2026-07-07 22:48:34','2026-07-07 23:17:04','1783464514_305f29b19c3155a38ea4.png','bebidas',0,0.00,0,0);
 /*!40000 ALTER TABLE `produtos` ENABLE KEYS */;
+UNLOCK TABLES;
+COMMIT;
+SET AUTOCOMMIT=@OLD_AUTOCOMMIT;
+
+--
+-- Table structure for table `totens`
+--
+
+DROP TABLE IF EXISTS `totens`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `totens` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `descricao` varchar(100) NOT NULL,
+  `ativo` tinyint(1) NOT NULL DEFAULT 1,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `totens`
+--
+
+SET @OLD_AUTOCOMMIT=@@AUTOCOMMIT, @@AUTOCOMMIT=0;
+LOCK TABLES `totens` WRITE;
+/*!40000 ALTER TABLE `totens` DISABLE KEYS */;
+INSERT INTO `totens` VALUES
+(2,'Totem 1',0,'2026-07-07 22:32:13','2026-07-07 22:33:07',NULL),
+(3,'Totem 2',1,'2026-07-07 22:50:21','2026-07-07 22:50:21',NULL);
+/*!40000 ALTER TABLE `totens` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
 SET AUTOCOMMIT=@OLD_AUTOCOMMIT;
@@ -254,7 +252,7 @@ CREATE TABLE `usuarios` (
   `reset_token` varchar(255) DEFAULT NULL,
   `reset_token_date` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -265,12 +263,9 @@ SET @OLD_AUTOCOMMIT=@@AUTOCOMMIT, @@AUTOCOMMIT=0;
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
 INSERT INTO `usuarios` VALUES
-(4,'eduardo.34000@aluno.iffar.edu.br','$2y$12$DNhAmqqQXiDHPW3ZioOxluVI28iuo.//nn25euHWMc6OWO9QnZWFa','2026-05-12 22:51:43','2026-05-13 01:11:26','super_admin',1,NULL,'2026-05-13 02:11:15'),
-(5,'aristimdudu@gmail.com','$2y$12$cWCWPyNMxF3Szb1pzi..6.eYkfG.WUTWR787ogr0F8jsrnAlG5DGG','2026-05-20 00:11:36','2026-05-20 00:11:36','usuario',1,NULL,NULL),
-(6,'aluno@gmail.com','$2y$12$JezAAKpBrE8DZ57baJCEG.xGonUQuFjEiY7urrdTaEfCjRasKYxwq','2026-06-02 22:07:40','2026-06-02 22:07:40','usuario',1,NULL,NULL),
-(7,'teste@teste.com','$2y$12$Otv/N8ILttmWXdvkXzq/J.MvtXznyYFo1zVdX2DlGBuJjHT/aSJT2','2026-06-09 22:14:23','2026-06-09 22:14:23','usuario',1,NULL,NULL),
-(9,'teste@gmail.com','$2y$12$fqBf0qxoQCAupUfLu3MEu.okM5r4JZKk7OyXYbF.CNA8iszdEb1cu','2026-06-29 19:08:53','2026-06-29 19:08:53','usuario',1,NULL,NULL),
-(10,'admin@iffar.edu.br','$2y$12$7IWHBtbMr1ny4H2G1lOBCeyebYgCv0lfbQrWSIoc4ifkKOUw6iM9S','2026-06-30 23:07:45','2026-06-30 23:07:45','super_admin',1,NULL,NULL);
+(10,'admin@iffar.edu.br','$2y$12$7IWHBtbMr1ny4H2G1lOBCeyebYgCv0lfbQrWSIoc4ifkKOUw6iM9S','2026-06-30 23:07:45','2026-06-30 23:07:45','super_admin',1,NULL,NULL),
+(13,'eduardo@iffar.com','$2y$12$R/5sao3UKVD5lcWKJsN8TOkDZBrTPdPH3LjgcibKbXKiKEhzJNYla','2026-07-07 22:35:38','2026-07-07 22:35:38','usuario',1,NULL,NULL),
+(14,'ederson@iffar.com','$2y$12$fTEbCOVoAB3fUSn6zc3eseJoX9kssLh6t58PyPfH4tNYRK1huEWaa','2026-07-07 22:49:42','2026-07-07 22:49:51','usuario',1,NULL,NULL);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
@@ -289,4 +284,4 @@ SET AUTOCOMMIT=@OLD_AUTOCOMMIT;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*M!100616 SET NOTE_VERBOSITY=@OLD_NOTE_VERBOSITY */;
 
--- Dump completed on 2026-06-30 21:54:48
+-- Dump completed on 2026-07-07 21:28:10

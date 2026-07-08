@@ -9,7 +9,17 @@
     <h1 class="mb-0 h4">Novo produto</h1>
 </div>
 
-<div class="card shadow-sm" style="border-top:4px solid #fd7e14;border-radius:.5rem;max-width:600px">
+<?php if (!empty(session()->getFlashdata('errors'))): ?>
+    <div class="alert alert-danger mb-3">
+        <ul class="mb-0">
+            <?php foreach (session()->getFlashdata('errors') as $e): ?>
+                <li><?= esc($e) ?></li>
+            <?php endforeach ?>
+        </ul>
+    </div>
+<?php endif ?>
+
+<div class="card shadow-sm" style="border-top:4px solid #fd7e14;border-radius:.5rem">
     <div class="card-body p-4">
         <form action="<?= site_url('produtos/salvar') ?>" method="post" enctype="multipart/form-data">
             <?= csrf_field() ?>

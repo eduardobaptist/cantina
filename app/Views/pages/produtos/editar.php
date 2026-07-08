@@ -19,7 +19,7 @@
     </div>
 <?php endif ?>
 
-<div class="card shadow-sm" style="border-top:4px solid #fd7e14;border-radius:.5rem;max-width:600px">
+<div class="card shadow-sm" style="border-top:4px solid #fd7e14;border-radius:.5rem">
     <div class="card-body p-4">
         <form method="post" action="<?= site_url('produtos/atualizar/' . $produto['id']) ?>" enctype="multipart/form-data">
             <?= csrf_field() ?>

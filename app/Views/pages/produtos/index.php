@@ -58,7 +58,7 @@
                 <tbody>
                     <?php foreach ($produtos as $produto): ?>
                         <tr>
-                            <td class="ps-3 text-muted small">#<?= esc($produto['id']) ?></td>
+                            <td class="ps-3 text-muted small"><?= esc($produto['id']) ?></td>
                             <td class="fw-semibold"><?= esc($produto['nome']) ?></td>
                             <td><span class="badge rounded-pill text-bg-light text-muted"><?= esc(ucfirst($produto['categoria'])) ?></span></td>
                             <td class="fw-semibold" style="color:#fd7e14">R$ <?= number_format($produto['preco'], 2, ',', '.') ?></td>

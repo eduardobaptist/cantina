@@ -125,6 +125,9 @@
                     <i class="fa-solid fa-chart-line fa-fw"></i> Vendas
                 </a>
 
+                <a href="<?= site_url('totens') ?>" class="menu-link <?= $seg === 'totens' ? 'ativo' : '' ?>">
+                    <i class="fa-solid fa-tablet-screen-button fa-fw"></i> Totens
+                </a>
                 <a href="<?= site_url('usuarios') ?>" class="menu-link <?= $seg === 'usuarios' ? 'ativo' : '' ?>">
                     <i class="fa-solid fa-users fa-fw"></i> Usuários
                 </a>
@@ -173,6 +176,9 @@
                     <i class="fa-solid fa-chart-line fa-fw"></i> Vendas
                 </a>
 
+                <a href="<?= site_url('totens') ?>" class="menu-link <?= $seg === 'totens' ? 'ativo' : '' ?>">
+                    <i class="fa-solid fa-tablet-screen-button fa-fw"></i> Totens
+                </a>
                 <a href="<?= site_url('usuarios') ?>" class="menu-link <?= $seg === 'usuarios' ? 'ativo' : '' ?>">
                     <i class="fa-solid fa-users fa-fw"></i> Usuários
                 </a>

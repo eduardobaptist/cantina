@@ -50,7 +50,7 @@
                 <tbody>
                     <?php foreach ($usuarios as $usuario): ?>
                         <tr>
-                            <td class="ps-3 text-muted small">#<?= esc($usuario['id']) ?></td>
+                            <td class="ps-3 text-muted small"><?= esc($usuario['id']) ?></td>
                             <td class="fw-semibold"><?= esc($usuario['email']) ?></td>
                             <td>
                                 <span class="badge rounded-pill text-bg-light text-muted">

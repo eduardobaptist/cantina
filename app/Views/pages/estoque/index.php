@@ -22,7 +22,7 @@
                     <?php foreach ($produtos as $produto): ?>
                         <?php $baixo = $produto['estoque'] <= $produto['estoque_limite']; ?>
                         <tr>
-                            <td class="ps-3 text-muted small">#<?= esc($produto['id']) ?></td>
+                            <td class="ps-3 text-muted small"><?= esc($produto['id']) ?></td>
                             <td class="fw-semibold"><?= esc($produto['nome']) ?></td>
                             <td><span class="badge rounded-pill text-bg-light text-muted"><?= esc(ucfirst($produto['categoria'])) ?></span></td>
                             <td>

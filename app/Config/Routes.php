@@ -27,6 +27,16 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
     $routes->post('perfil', 'UsuarioController::atualizarPerfil');
 });
 
+$routes->group('totens', ['filter' => 'superadmin'], function ($routes) {
+    $routes->get('', 'TotemController::index');
+    $routes->get('novo', 'TotemController::novo');
+    $routes->post('salvar', 'TotemController::salvar');
+    $routes->get('editar/(:num)', 'TotemController::editar/$1');
+    $routes->post('atualizar/(:num)', 'TotemController::atualizar/$1');
+    $routes->get('ativar/(:num)', 'TotemController::ativar/$1');
+    $routes->get('desativar/(:num)', 'TotemController::desativar/$1');
+});
+
 $routes->group('usuarios', ['filter' => 'superadmin'], function ($routes) {
     $routes->get('', 'UsuarioController::index');
     $routes->get('novo', 'UsuarioController::novo');
@@ -59,3 +69,4 @@ $routes->get('api/produtos', 'Api\ApiController::get_produtos');
 $routes->post('api/checkout', 'Api\ApiController::checkout');
 $routes->get('api/pedidos', 'Api\ApiController::get_pedidos');
 $routes->patch('api/pedidos/(:num)/status', 'Api\ApiController::update_pedido_status/$1');
+$routes->get('api/totens/(:num)', 'Api\ApiController::get_totem/$1');

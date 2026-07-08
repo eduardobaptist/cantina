@@ -101,15 +101,15 @@ class ProdutoController extends BaseController
 
         if ($foto && $foto->isValid()) {
             $random = $foto->getRandomName();
-
             $foto->move(FCPATH . "uploads/produtos", $random);
-
             $dados["foto"] = $random;
+        }
 
-            if (!$this->model->insert($dados)) {
-                unlink(FCPATH . "uploads/produtos", $random);
-                return redirect()->back()->withInput()->with("errors", $$this->model->errors());
+        if (!$this->model->insert($dados)) {
+            if (isset($random)) {
+                unlink(FCPATH . "uploads/produtos/" . $random);
             }
+            return redirect()->back()->withInput()->with("errors", $this->model->errors());
         }
 
         return redirect()->to(site_url("produtos"));
@@ -126,7 +126,7 @@ class ProdutoController extends BaseController
         $dados = [
             'nome' => $this->request->getPost('nome'),
             'preco' => $this->request->getPost('preco'),
-            'categoria' => $this->request->getPost('preco'),
+            'categoria' => $this->request->getPost('categoria'),
         ];
 
         if (!$this->model->update($id, $dados)) {
@@ -143,7 +143,11 @@ class ProdutoController extends BaseController
     public function excluir(int $id)
     {
         $produto = $this->model->find($id);
-        unlink(FCPATH . "uploads/produtos/" . $produto["foto"]);
+
+        if (!empty($produto["foto"]) && is_file(FCPATH . "uploads/produtos/" . $produto["foto"])) {
+            unlink(FCPATH . "uploads/produtos/" . $produto["foto"]);
+        }
+
         $this->model->delete($id);
         return redirect()->to(site_url("produtos"));
     }

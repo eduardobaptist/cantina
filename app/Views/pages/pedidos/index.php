@@ -32,7 +32,7 @@
                         ?>
                         <tr>
                             <td class="ps-3 fw-bold" style="color:#fd7e14">
-                                #<?= str_pad($pedido['id'], 3, '0', STR_PAD_LEFT) ?>
+                                <?= str_pad($pedido['id'], 3, '0', STR_PAD_LEFT) ?>
                             </td>
                             <td>
                                 <ul class="mb-0 ps-3 small">

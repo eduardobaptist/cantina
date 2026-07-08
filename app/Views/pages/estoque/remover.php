@@ -16,7 +16,7 @@
         <span class="badge text-bg-secondary"><?= esc($produto['estoque']) ?> em estoque</span>
     </div>
 
-    <div class="card shadow-sm" style="border-top:4px solid #dc3545;border-radius:.5rem;max-width:500px">
+    <div class="card shadow-sm" style="border-top:4px solid #dc3545;border-radius:.5rem">
         <div class="card-body p-4">
             <form action="<?= site_url('estoque/salvar') ?>" method="post">
                 <?= csrf_field() ?>

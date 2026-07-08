@@ -7,6 +7,7 @@ use CodeIgniter\API\ResponseTrait;
 use App\Models\PedidoModel;
 use App\Models\PedidoProdutosModel;
 use App\Models\ProdutoModel;
+use App\Models\TotemModel;
 
 class ApiController extends BaseController
 {
@@ -54,14 +55,26 @@ class ApiController extends BaseController
 
         $pedidoModel = new PedidoModel();
         $pedidoProdutosModel = new PedidoProdutosModel();
+        $produtoModel = new ProdutoModel();
         $db = \Config\Database::connect();
 
         $db->transStart();
 
+        $idTotem = $dados['totem'] ?? null;
+
+        if ($idTotem !== null) {
+            $totemModel = new TotemModel();
+            $totem = $totemModel->find((int) $idTotem);
+
+            if (!$totem || (int) $totem['ativo'] !== 1) {
+                return $this->failForbidden('Totem inválido ou inativo.');
+            }
+        }
+
         $idPedido = $pedidoModel->insert([
-            'status' => $dados['status'] ?? 'aguardando',
+            'status'  => $dados['status'] ?? 'aguardando',
             'cliente' => $dados['cliente'] ?? null,
-            'totem' => $dados['totem'] ?? null,
+            'totem'   => $idTotem,
         ]);
 
         foreach ($dados['produtos'] as $produto) {
@@ -71,6 +84,17 @@ class ApiController extends BaseController
                 'quantidade'     => $produto['quantidade'],
                 'preco_unitario' => $produto['preco_unitario'],
             ]);
+
+            $produtoAtual = $produtoModel->find($produto['id_produto']);
+
+            if (!$produtoAtual) {
+                $db->transRollback();
+                return $this->failValidationErrors('Produto não encontrado: ' . $produto['id_produto']);
+            }
+
+            $novoEstoque = $produtoAtual['estoque'] - (int) $produto['quantidade'];
+
+            $produtoModel->update($produto['id_produto'], ['estoque' => $novoEstoque]);
         }
 
         $db->transComplete();
@@ -113,6 +137,27 @@ class ApiController extends BaseController
         }
 
         return $this->respond($pedidos);
+    }
+
+    public function get_totem(int $id)
+    {
+        $apiKey = $this->request->getHeaderLine('X-API-Key');
+
+        if ($apiKey !== env('API_KEY')) {
+            return $this->respond([], 401);
+        }
+
+        $totemModel = new TotemModel();
+        $totem = $totemModel->find($id);
+
+        if (!$totem || (int) $totem['ativo'] !== 1) {
+            return $this->failNotFound('Totem não encontrado ou inativo.');
+        }
+
+        return $this->respond([
+            'id'       => (int) $totem['id'],
+            'descricao' => $totem['descricao'],
+        ]);
     }
 
     public function update_pedido_status(int $id)
